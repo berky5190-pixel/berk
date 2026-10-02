@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'driver' => getenv('DB_CONNECTION') ?: 'mysql',
+    'driver' => getenv('DB_CONNECTION') ?: 'sqlite',
     'host' => getenv('DB_HOST') ?: '127.0.0.1',
     'port' => getenv('DB_PORT') ?: '3306',
     'database' => getenv('DB_DATABASE') ?: 'demirbas_db',

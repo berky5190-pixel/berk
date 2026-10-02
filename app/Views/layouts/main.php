@@ -32,8 +32,15 @@
                         $isStaffUser = \App\Services\AuthService::isStaff();
                         $dbInstance = \App\Core\Database::getInstance()->getConnection();
                         $pendingRequestsCount = 0;
-                        if ($isStaffUser) {
-                            $pendingRequestsCount = $dbInstance->query("SELECT COUNT(*) as c FROM asset_requests WHERE status = 'pending'")->fetch()['c'] ?? 0;
+                        if ($isStaffUser && $dbInstance) {
+                            try {
+                                $stmt = $dbInstance->query("SELECT COUNT(*) as c FROM asset_requests WHERE status = 'pending'");
+                                if ($stmt) {
+                                    $pendingRequestsCount = (int)($stmt->fetch()['c'] ?? 0);
+                                }
+                            } catch (\Throwable $e) {
+                                $pendingRequestsCount = 0;
+                            }
                         }
                     ?>
 
