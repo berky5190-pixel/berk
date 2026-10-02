@@ -407,7 +407,8 @@ function seedSqliteData(PDO $pdo): void {
     // Admin user: admin / Admin123!
     $adminHash = '$2y$10$F005jmLibEgjEhP8/MxfzuZqW6mliVpxqYAsYoVSsypVDo5ccYJXO';
     $pdo->exec("INSERT OR IGNORE INTO users (id, role_id, username, email, password_hash, full_name, status) VALUES
-        (1, 1, 'admin', 'admin@kurum.com', '{$adminHash}', 'Sistem Yöneticisi', 'active')");
+        (1, 1, 'admin', 'admin@kurum.com', '{$adminHash}', 'Sistem Yöneticisi', 'active'),
+        (2, 1, 'berk', 'berky5190@gmail.com', '{$adminHash}', 'Berk (Yönetici)', 'active')");
 
     // Sample Settings
     $pdo->exec("INSERT OR IGNORE INTO settings (key, value, [group], description) VALUES
