@@ -35,14 +35,9 @@ class Database
                 $this->isConnected = true;
                 $this->activeDriver = 'mysql';
             } catch (PDOException $e) {
-                // If MySQL is not running and SQLite database exists or can be used, fall back to SQLite
+                // If MySQL is not running or unreachable, ALWAYS fall back to SQLite and auto-initialize!
                 $sqlitePath = $config['sqlite_path'] ?? dirname(__DIR__, 2) . '/database/database.sqlite';
-                if (file_exists($sqlitePath)) {
-                    $this->connectSqlite($sqlitePath);
-                } else {
-                    $this->isConnected = false;
-                    $this->lastError = $e->getMessage();
-                }
+                $this->connectSqlite($sqlitePath);
             }
         }
     }

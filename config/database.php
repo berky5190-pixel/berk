@@ -1,8 +1,21 @@
 <?php
 
+$dbConnection = getenv('DB_CONNECTION');
+$dbHost = getenv('DB_HOST');
+
+// Determine driver: If DB_CONNECTION is not set or set to mysql but host is 127.0.0.1 without mysql server, use sqlite
+if (!$dbConnection || $dbConnection === 'sqlite') {
+    $driver = 'sqlite';
+} elseif ($dbConnection === 'mysql' && (!$dbHost || $dbHost === '127.0.0.1' || $dbHost === 'localhost')) {
+    // On cloud container environments (like Render), 127.0.0.1 MySQL doesn't exist
+    $driver = (getenv('RENDER') || !getenv('DB_DATABASE')) ? 'sqlite' : 'mysql';
+} else {
+    $driver = $dbConnection;
+}
+
 return [
-    'driver' => getenv('DB_CONNECTION') ?: 'sqlite',
-    'host' => getenv('DB_HOST') ?: '127.0.0.1',
+    'driver' => $driver,
+    'host' => $dbHost ?: '127.0.0.1',
     'port' => getenv('DB_PORT') ?: '3306',
     'database' => getenv('DB_DATABASE') ?: 'demirbas_db',
     'username' => getenv('DB_USERNAME') ?: 'root',
