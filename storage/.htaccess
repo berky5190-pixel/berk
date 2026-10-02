@@ -1,0 +1,8 @@
+# Storage Direct Access Denied
+# All uploads and documents must be served via PHP with proper authorization checks
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Deny from all
+</IfModule>

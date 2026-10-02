@@ -1,0 +1,5 @@
+<?php
+
+namespace App\Services;
+
+// Services will be implemented in subsequent stages

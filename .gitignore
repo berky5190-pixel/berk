@@ -1,0 +1,41 @@
+# Ortam Değişkenleri ve Hassas Dosyalar
+.env
+
+# SQLite Veritabanı Dosyaları
+*.sqlite
+*.sqlite3
+*.db
+/database/*.sqlite
+/storage/*.sqlite
+
+# Bağımlılıklar
+/vendor/
+/node_modules/
+
+# Depolama ve Yüklemeler
+/storage/documents/*
+!/storage/documents/.gitkeep
+/storage/generated_docs/*
+!/storage/generated_docs/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/uploads/assets/*
+!/storage/uploads/assets/.gitkeep
+/storage/uploads/assignments/*
+!/storage/uploads/assignments/.gitkeep
+/storage/uploads/employees/*
+!/storage/uploads/employees/.gitkeep
+
+# IDE ve Editör Ayarları
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# İşletim Sistemi Kalıntıları
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Geçici Test Dosyaları
+test_db.php
